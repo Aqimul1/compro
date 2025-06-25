@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('images/alanxcode.png') }}" class="h-10 rounded-full" alt="ALANxCODE Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-slate-100">Xoni Agency</span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-slate-100">Adam Agency</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -15,33 +15,56 @@
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul
-                class="flex flex-col text-xl font-medium p-4 md:p-0 mt-4 border border-gray-200 rounded-lg bg-slate-200 text-gray-900 md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent md:text-slate-100">
+            <ul class="flex flex-row text-xl font-medium space-x-4 rtl:space-x-reverse text-slate-100">
                 <li>
-                    <a href="/"
-                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'index' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'index' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
-                        Beranda
+                    <a href="/dashboard"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'dashboard' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'dashboard' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Dashboard
                     </a>
                 </li>
+
                 <li>
-                    <a href="/tentang"
-                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'tentang' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'tentang' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
-                        Tentang
+                    <a href="/users"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'users' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'users' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Users
                     </a>
                 </li>
-                <li>
-                    <a href="/layanan"
-                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'layanan' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'layanan' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
-                        Layanan
+
+                <li><a href="/products"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'products' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'products' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Products
                     </a>
                 </li>
+
                 <li>
-                    <a href="/kontak"
-                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'kontak' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'kontak' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
-                        Kontak
+                    <a href="/testimonials"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'testimonials' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'testimonials' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Testimonials
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/contacts"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'contacts' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'contacts' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Contacts
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/settings"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'settings' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'settings' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Settings
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/galleries"
+                        class="block py-2 px-3 md:p-2 rounded {{ $activePage === 'galleries' ? 'bg-sky-800 text-slate-100' : 'hover:text-slate-100 hover:bg-sky-800' }} md:hover:bg-transparent md:hover:text-sky-800 md:transition-colors md:duration-500 md:ease-in-out md:text-lg md:bg-transparent {{ $activePage === 'galleries' ? 'md:text-sky-800' : 'md:text-slate-100' }}">
+                        Galleries
                     </a>
                 </li>
             </ul>
+
         </div>
     </div>
 </nav>

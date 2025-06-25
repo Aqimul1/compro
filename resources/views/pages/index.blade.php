@@ -3,7 +3,7 @@
         <main class="bg-main h-screen relative font-ubuntu flex items-center justify-start">
             <div class="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm"></div>
             <div class="relative z-10 text-slate-100 pt-20 px-6 space-y-4">
-                <h2 class="text-lg font-semibold uppercase">Welcome To Xoni Agency</h2>
+                <h2 class="text-lg font-semibold uppercase">Welcome To Agency</h2>
                 <h1 class="text-5xl font-bold uppercase lg:text-7xl">Delivers More <br class="hidden md:block"> Than Expected
                 </h1>
                 <p class="text-md font-medium text-base md:pr-80 ">Lorem ipsum dolor sit amet consectetur, adipisicing

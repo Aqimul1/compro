@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,18 +11,18 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Kolom yang boleh diisi massal
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Kolom yang harus disembunyikan saat serialisasi
      *
      * @var array<int, string>
      */
@@ -33,15 +32,22 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Casts
      *
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Override default login menggunakan username (bukan email)
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'username';
     }
 }
