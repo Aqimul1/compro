@@ -10,7 +10,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::latest()->paginate(10);
-        return view('dashboard.contacts.index', compact('contacts'));
+        return view('admin.contacts.index', compact('contacts'));
     }
 
     public function destroy($id)
