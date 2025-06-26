@@ -29,7 +29,6 @@
                     <td class="p-3 border-b">{{ $loop->iteration }}</td>
                     <td class="p-3 border-b">{{ $testimonial->nama }}</td>
                     <td class="p-3 border-b">{{ $testimonial->pesan }}</td>
-                    <td class="p-3 border-b">{{ $testimonial->rating }} / 5</td>
                     <td class="p-3 border-b space-x-2">
                         <a href="{{ route('testimonials.edit', $testimonial->id) }}" class="text-blue-600 hover:underline">Edit</a>
                         <form action="{{ route('testimonials.destroy', $testimonial->id) }}" method="POST" class="inline">

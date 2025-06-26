@@ -9,9 +9,7 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('is_admin')) {
-            return redirect('/login');
-        }
+        
 
         return $next($request);
     }

@@ -20,7 +20,6 @@ Route::get('/', function () {
 });
 
 // Admin area
-Route::middleware(['web', 'is_admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -29,13 +28,14 @@ Route::middleware(['web', 'is_admin'])->group(function () {
     Route::resource('testimonials', TestimonialsController::class);
     Route::resource('galleries', GalleryController::class);
 
-    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
-    Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+
+Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
