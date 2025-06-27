@@ -10,7 +10,10 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::latest()->paginate(10);
-        return view('admin.contacts.index', compact('contacts'));
+        return view('admin.contacts.index', [
+            'contacts' => $contacts,
+            'activePage' => 'contacts',
+        ]);
     }
 
     public function destroy($id)

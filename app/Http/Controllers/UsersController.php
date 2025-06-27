@@ -30,46 +30,32 @@ class UsersController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
         ]);
 
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'password' => Hash::make('password1234'),
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Pengguna berhasil ditambahkan.');
-    }
-
-    public function edit($id)
-    {
-        return view('admin.users.edit', [
-            'user' => User::findOrFail($id),
-            'activePage' => 'users',
-            'title' => 'Edit Pengguna',
-        ]);
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:6|confirmed',
         ]);
 
+        $user = User::findOrFail($id);
         $user->update([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => $validated['password'] ? Hash::make($validated['password']) : $user->password,
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
 
         return redirect()->route('users.index')->with('success', 'Pengguna berhasil diperbarui.');
     }
-
     public function destroy($id)
     {
         $user = User::findOrFail($id);

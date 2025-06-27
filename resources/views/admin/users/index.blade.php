@@ -5,13 +5,15 @@
 
     {{-- Tombol Tambah --}}
     <div class="mb-4">
-        <a href="{{ route('users.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        <a href="#" id="openModal" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             + Tambah Pengguna
         </a>
-    </div>
 
+    </div>
     {{-- Tabel Pengguna --}}
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
+
+        @include('admin.users.create')
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
@@ -28,11 +30,16 @@
                         <td class="p-3 border-b">{{ $user->name }}</td>
                         <td class="p-3 border-b">{{ $user->email }}</td>
                         <td class="p-3 border-b space-x-2">
-                            <a href="{{ route('users.edit', $user->id) }}" class="text-blue-600 hover:underline">Edit</a>
+                            <a href="#" class="text-blue-600 hover:underline edit-user-btn"
+                                data-id="{{ $user->id }}" data-name="{{ $user->name }}"
+                                data-email="{{ $user->email }}">
+                                Edit
+                            </a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-red-600 hover:underline" onclick="return confirm('Hapus pengguna ini?')">Hapus</button>
+                                <button class="text-red-600 hover:underline"
+                                    onclick="return confirm('Hapus pengguna ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -47,3 +54,28 @@
         </table>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const openModal = document.getElementById("openModal");
+            const closeModal = document.getElementById("closeModal");
+            const modal = document.getElementById("userModal");
+
+            openModal.addEventListener("click", function(e) {
+                e.preventDefault();
+                modal.classList.remove("hidden");
+            });
+
+            closeModal.addEventListener("click", function() {
+                modal.classList.add("hidden");
+            });
+
+            // Klik luar modal untuk menutup
+            window.addEventListener("click", function(e) {
+                if (e.target === modal) {
+                    modal.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+@endpush
