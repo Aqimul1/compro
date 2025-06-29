@@ -19,7 +19,6 @@
                     <th class="p-3 border-b">No.</th>
                     <th class="p-3 border-b">Nama</th>
                     <th class="p-3 border-b">Pesan</th>
-                    <th class="p-3 border-b">Rating</th>
                     <th class="p-3 border-b">Aksi</th>
                 </tr>
             </thead>

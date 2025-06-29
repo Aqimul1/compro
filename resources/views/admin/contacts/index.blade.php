@@ -25,9 +25,9 @@
                 @forelse($contacts as $index => $contact)
                     <tr class="border-t">
                         <td class="p-3">{{ $index + $contacts->firstItem() }}</td>
-                        <td class="p-3">{{ $contact->nama }}</td>
+                        <td class="p-3">{{ $contact->name }}</td>
                         <td class="p-3">{{ $contact->email }}</td>
-                        <td class="p-3">{{ $contact->pesan }}</td>
+                        <td class="p-3">{{ $contact->message }}</td>
                         <td class="p-3">
                             <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                 @csrf

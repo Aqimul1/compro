@@ -5,15 +5,17 @@
 
     {{-- Tombol Tambah --}}
     <div class="mb-4">
-        <a href="#" id="openModal" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        {{-- ID diubah agar lebih jelas dan tidak konflik --}}
+        <a href="#" id="openCreateModal" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             + Tambah Pengguna
         </a>
-
     </div>
+    
     {{-- Tabel Pengguna --}}
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
-
+        {{-- Include modal serbaguna --}}
         @include('admin.users.create')
+
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
@@ -30,8 +32,10 @@
                         <td class="p-3 border-b">{{ $user->name }}</td>
                         <td class="p-3 border-b">{{ $user->email }}</td>
                         <td class="p-3 border-b space-x-2">
+                            {{-- Tombol edit dengan data attributes --}}
                             <a href="#" class="text-blue-600 hover:underline edit-user-btn"
-                                data-id="{{ $user->id }}" data-name="{{ $user->name }}"
+                                data-id="{{ $user->id }}" 
+                                data-name="{{ $user->name }}"
                                 data-email="{{ $user->email }}">
                                 Edit
                             </a>
@@ -54,28 +58,80 @@
         </table>
     </div>
 @endsection
+
 @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const openModal = document.getElementById("openModal");
-            const closeModal = document.getElementById("closeModal");
-            const modal = document.getElementById("userModal");
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- Referensi Elemen ---
+        const modal = document.getElementById("userModal");
+        const openCreateModalBtn = document.getElementById("openCreateModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const editUserBtns = document.querySelectorAll(".edit-user-btn");
 
-            openModal.addEventListener("click", function(e) {
+        // Elemen di dalam Modal
+        const modalTitle = document.getElementById("modalTitle");
+        const userForm = document.getElementById("userForm");
+        const formMethod = document.getElementById("formMethod");
+        const submitButton = document.getElementById("submitButton");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+
+        // --- FUNGSI UNTUK MENAMPILKAN MODAL ---
+        const showModal = () => {
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        };
+
+        // --- FUNGSI UNTUK MENUTUP MODAL ---
+        const hideModal = () => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        };
+
+        // --- Event Listener untuk Tombol TAMBAH ---
+        openCreateModalBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            
+            userForm.reset(); // Mengosongkan form
+            modalTitle.textContent = "Tambah Pengguna";
+            userForm.action = "{{ route('users.store') }}";
+            formMethod.innerHTML = ""; // Pastikan method PUT/PATCH kosong
+            submitButton.textContent = "Simpan";
+            
+            showModal();
+        });
+
+        // --- Event Listener untuk Tombol EDIT (Looping) ---
+        editUserBtns.forEach(button => {
+            button.addEventListener("click", function(e) {
                 e.preventDefault();
-                modal.classList.remove("hidden");
-            });
 
-            closeModal.addEventListener("click", function() {
-                modal.classList.add("hidden");
-            });
+                // Ambil data dari atribut `data-*` (ini "key-value" yang Anda maksud)
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const email = this.dataset.email;
 
-            // Klik luar modal untuk menutup
-            window.addEventListener("click", function(e) {
-                if (e.target === modal) {
-                    modal.classList.add("hidden");
-                }
+                // Atur modal untuk mode edit
+                modalTitle.textContent = "Edit Pengguna";
+                userForm.action = `/users/${id}`; // Ganti URL action form
+                formMethod.innerHTML = `@method('PUT')`; // Sisipkan method spoofing untuk Laravel
+                submitButton.textContent = "Simpan Perubahan";
+
+                // Isi input field dengan data user
+                nameInput.value = name;
+                emailInput.value = email;
+                
+                showModal();
             });
         });
-    </script>
+
+        // --- Event Listener untuk Menutup Modal ---
+        closeModalBtn.addEventListener("click", hideModal);
+        window.addEventListener("click", function(e) {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    });
+</script>
 @endpush

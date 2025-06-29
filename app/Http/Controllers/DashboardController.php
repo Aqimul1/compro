@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Testimonial;
 use App\Models\Product;
+Use App\Models\Contact;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,7 @@ class DashboardController extends Controller
             'totalUsers' => User::count(),
             'totalTestimonials' => Testimonial::count(),
             'totalProducts' => Product::count(),
+            'totalContacts' => Contact::count(),
         ]);
     }
 }
