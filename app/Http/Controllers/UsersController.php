@@ -38,7 +38,7 @@ class UsersController extends Controller
             'password' => Hash::make('password1234'),
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        return redirect()->route('users.index')->with('success', 'Pengguna berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
